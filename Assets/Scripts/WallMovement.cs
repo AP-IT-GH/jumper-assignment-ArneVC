@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class WallMovement : MonoBehaviour
 {
-    public float speed = 5.0f;
+    public float speed = 20.0f;
     void Start()
     {
         //
@@ -12,6 +12,6 @@ public class WallMovement : MonoBehaviour
 
     void Update()
     {
-        transform.Translate(Vector3.left * speed * Time.deltaTime);
+        transform.Translate(Vector3.back * speed * Time.deltaTime);
     }
 }
