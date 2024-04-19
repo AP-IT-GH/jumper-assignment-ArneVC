@@ -5,22 +5,23 @@ using UnityEngine;
 public class SpawnWalls : MonoBehaviour
 {
     public GameObject objectToSpawn;
-    public float spawnIntervalMilliseconds = 2000f;
-    private float timeSinceLastSpawn;
+    public float minSpawnIntervalMilliseconds = 2000f;
+    public float maxSpawnIntervalMilliseconds = 3500f;
+    private float timeUntilNextSpawn;
 
     void Start()
     {
-        timeSinceLastSpawn = 0f;
+        timeUntilNextSpawn = Random.Range(minSpawnIntervalMilliseconds, maxSpawnIntervalMilliseconds);
     }
 
     void Update()
     {
-        timeSinceLastSpawn += Time.deltaTime * 1000;
+        timeUntilNextSpawn -= Time.deltaTime * 1000;
 
-        if (timeSinceLastSpawn >= spawnIntervalMilliseconds)
+        if (timeUntilNextSpawn <= 0f)
         {
             SpawnObject();
-            timeSinceLastSpawn = 0f;
+            timeUntilNextSpawn = Random.Range(minSpawnIntervalMilliseconds, maxSpawnIntervalMilliseconds);
         }
     }
 
