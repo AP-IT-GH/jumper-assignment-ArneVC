@@ -426,6 +426,7 @@ GameObject:
   - component: {fileID: 1369499784}
   - component: {fileID: 1369499783}
   - component: {fileID: 1369499782}
+  - component: {fileID: 1369499786}
   m_Layer: 0
   m_Name: WallSpawner
   m_TagString: Untagged
@@ -519,6 +520,20 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1369499786
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1369499781}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e261c267d0871f429e6c2ea592c8171, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  objectToSpawn: {fileID: 9193079942291304544, guid: 3ec83732748b49f47b6990a3dabf3770, type: 3}
+  spawnIntervalMilliseconds: 2000
 --- !u!1 &1417832354
 GameObject:
   m_ObjectHideFlags: 0
