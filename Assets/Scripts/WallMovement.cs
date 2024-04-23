@@ -14,4 +14,14 @@ public class WallMovement : MonoBehaviour
     {
         transform.Translate(Vector3.back * speed * Time.deltaTime);
     }
+
+    void OnTriggerEnter(Collider other)
+    {
+        Debug.Log("trigger enter");
+        if (other.CompareTag("BackWall"))
+        {
+            Debug.Log("destroy");
+            Destroy(gameObject);
+        }
+    }
 }
