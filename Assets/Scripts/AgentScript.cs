@@ -24,7 +24,7 @@ public class AgentScript : Agent
 
     public override void CollectObservations(VectorSensor sensor)
     {
-
+        sensor.AddObservation(transform.localPosition.y);
     }
 
     public override void OnActionReceived(ActionBuffers actionBuffers)
