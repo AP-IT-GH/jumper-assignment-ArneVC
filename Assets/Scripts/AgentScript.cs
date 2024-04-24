@@ -36,6 +36,7 @@ public class AgentScript : Agent
         var actions = actionBuffers.ContinuousActions;
         if (isGrounded && actions[0] > 0)
         {
+            AddReward(-0.01f);
             Jump();
         }
     }
@@ -55,7 +56,7 @@ public class AgentScript : Agent
     }
     public void WallDestroyed()
     {
-        AddReward(0.5f);
+        AddReward(1.0f);
     }
 
     private void OnCollisionEnter(Collision collision)
