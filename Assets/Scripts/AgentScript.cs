@@ -53,6 +53,11 @@ public class AgentScript : Agent
     private void OnCollisionEnter(Collision collision)
     {
         rb.freezeRotation = true;
+        if(!collision.gameObject.CompareTag("Floor"))
+        {
+            Debug.Log("dead");
+            EndEpisode();
+        }        
     }
 
     private void Jump()
