@@ -8,7 +8,7 @@ using UnityEngine;
 public class AgentScript : Agent
 {
     Rigidbody rb;
-    public float jumpForce = 2.5f;
+    public float jumpForce = 100f;
     private GameManager gameManager;
     private bool isGrounded = true;
 
