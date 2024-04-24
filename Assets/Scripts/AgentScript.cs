@@ -34,7 +34,6 @@ public class AgentScript : Agent
         var actions = actionBuffers.DiscreteActions;
         if (actions[0] == 1)
         {
-            AddReward(-0.05f);
             Jump();
         }
     }
