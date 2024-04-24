@@ -8,7 +8,7 @@ using UnityEngine;
 public class AgentScript : Agent
 {
     Rigidbody rb;
-    public float jumpForce = 10f;
+    public float jumpForce = 2.5f;
 
     public void Start()
     {
@@ -31,6 +31,20 @@ public class AgentScript : Agent
         if (actions[0] == 1)
         {
             Jump();
+        }
+    }
+
+    public override void Heuristic(in ActionBuffers actionsOut)
+    {
+        var discreteActionsOut = actionsOut.DiscreteActions;
+        discreteActionsOut.Clear();
+        if (Input.GetKey(KeyCode.Space))
+        {
+            discreteActionsOut[0] = 1;
+        }
+        else
+        {
+            discreteActionsOut[0] = 0;
         }
     }
     private void Jump()
