@@ -17,10 +17,8 @@ public class WallMovement : MonoBehaviour
 
     void OnTriggerEnter(Collider other)
     {
-        Debug.Log("trigger enter");
         if (other.CompareTag("BackWall"))
         {
-            Debug.Log("destroy");
             Destroy(gameObject);
         }
     }
