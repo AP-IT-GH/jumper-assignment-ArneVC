@@ -13,11 +13,13 @@ public class AgentScript : Agent
     public void Start()
     {
         rb = GetComponent<Rigidbody>();
+        rb.freezeRotation = true;
     }
     public override void OnEpisodeBegin()
     {
         this.transform.localPosition = new Vector3(0.0f, 1.5f, -43.0f);
         this.transform.localRotation = Quaternion.identity;
+        rb.freezeRotation = true;
     }
 
     public override void CollectObservations(VectorSensor sensor)
@@ -47,6 +49,12 @@ public class AgentScript : Agent
             discreteActionsOut[0] = 0;
         }
     }
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        rb.freezeRotation = true;
+    }
+
     private void Jump()
     {
         rb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
