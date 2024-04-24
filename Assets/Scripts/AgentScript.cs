@@ -54,7 +54,6 @@ public class AgentScript : Agent
     }
     public void WallDestroyed()
     {
-        Debug.Log("agent gained points for a wall getting destroyed");
         AddReward(0.5f);
     }
 
@@ -63,7 +62,6 @@ public class AgentScript : Agent
         rb.freezeRotation = true;
         if(!collision.gameObject.CompareTag("Floor"))
         {
-            Debug.Log("dead");
             gameManager.ResetWalls();
             EndEpisode();
         }        
