@@ -9,6 +9,7 @@ public class AgentScript : Agent
 {
     Rigidbody rb;
     public float jumpForce = 2.5f;
+    public GameManager gameManager;
 
     public void Start()
     {
@@ -56,6 +57,7 @@ public class AgentScript : Agent
         if(!collision.gameObject.CompareTag("Floor"))
         {
             Debug.Log("dead");
+            gameManager.ResetWalls();
             EndEpisode();
         }        
     }

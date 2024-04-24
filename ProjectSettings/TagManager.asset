@@ -6,6 +6,7 @@ TagManager:
   tags:
   - BackWall
   - Floor
+  - DangerWall
   layers:
   - Default
   - TransparentFX
