@@ -23,6 +23,7 @@ public class AgentScript : Agent
         this.transform.localPosition = new Vector3(0.0f, 1.5f, -43.0f);
         this.transform.localRotation = Quaternion.identity;
         rb.freezeRotation = true;
+        isGrounded = true;
     }
 
     public override void CollectObservations(VectorSensor sensor)
@@ -33,7 +34,7 @@ public class AgentScript : Agent
     public override void OnActionReceived(ActionBuffers actionBuffers)
     {
         var actions = actionBuffers.ContinuousActions;
-        if (actions[0] > 0)
+        if (isGrounded && actions[0] > 0)
         {
             Jump();
         }
@@ -64,11 +65,16 @@ public class AgentScript : Agent
         {
             gameManager.ResetWalls();
             EndEpisode();
-        }        
+        }
+        if(collision.gameObject.CompareTag("Floor"))
+        {
+            isGrounded = true;
+        }
     }
 
     private void Jump()
     {
         rb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
+        isGrounded = false;
     }
 }
