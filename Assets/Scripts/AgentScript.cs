@@ -10,6 +10,7 @@ public class AgentScript : Agent
     Rigidbody rb;
     public float jumpForce = 2.5f;
     private GameManager gameManager;
+    private bool isGrounded = true;
 
     public void Start()
     {
