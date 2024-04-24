@@ -31,8 +31,8 @@ public class AgentScript : Agent
 
     public override void OnActionReceived(ActionBuffers actionBuffers)
     {
-        var actions = actionBuffers.DiscreteActions;
-        if (actions[0] == 1)
+        var actions = actionBuffers.ContinuousActions;
+        if (actions[0] > 0)
         {
             Jump();
         }
@@ -40,15 +40,15 @@ public class AgentScript : Agent
 
     public override void Heuristic(in ActionBuffers actionsOut)
     {
-        var discreteActionsOut = actionsOut.DiscreteActions;
-        discreteActionsOut.Clear();
+        var continuousActionsOut = actionsOut.ContinuousActions;
+        continuousActionsOut.Clear();
         if (Input.GetKey(KeyCode.Space))
         {
-            discreteActionsOut[0] = 1;
+            continuousActionsOut[0] = 1;
         }
         else
         {
-            discreteActionsOut[0] = 0;
+            continuousActionsOut[0] = 0;
         }
     }
     public void WallDestroyed()
