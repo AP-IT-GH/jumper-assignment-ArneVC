@@ -9,10 +9,11 @@ public class AgentScript : Agent
 {
     Rigidbody rb;
     public float jumpForce = 2.5f;
-    public GameManager gameManager;
+    private GameManager gameManager;
 
     public void Start()
     {
+        gameManager = FindObjectOfType<GameManager>();
         rb = GetComponent<Rigidbody>();
         rb.freezeRotation = true;
     }
@@ -33,6 +34,7 @@ public class AgentScript : Agent
         var actions = actionBuffers.DiscreteActions;
         if (actions[0] == 1)
         {
+            AddReward(-0.05f);
             Jump();
         }
     }
@@ -49,6 +51,11 @@ public class AgentScript : Agent
         {
             discreteActionsOut[0] = 0;
         }
+    }
+    public void WallDestroyed()
+    {
+        Debug.Log("agent gained points for a wall getting destroyed");
+        AddReward(0.5f);
     }
 
     private void OnCollisionEnter(Collision collision)
