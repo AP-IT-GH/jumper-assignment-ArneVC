@@ -507,7 +507,6 @@ MonoBehaviour:
   hasUpgradedFromAgentParameters: 1
   MaxStep: 0
   jumpForce: 5
-  gameManager: {fileID: 1909832456}
 --- !u!114 &1062024391
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -653,8 +652,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   objectToSpawn: {fileID: 9193079942291304544, guid: 3ec83732748b49f47b6990a3dabf3770, type: 3}
-  minSpawnIntervalMilliseconds: 2000
-  maxSpawnIntervalMilliseconds: 3500
+  minSpawnIntervalMilliseconds: 3500
+  maxSpawnIntervalMilliseconds: 5000
 --- !u!1 &1417832354
 GameObject:
   m_ObjectHideFlags: 0

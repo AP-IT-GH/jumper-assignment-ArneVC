@@ -5,8 +5,8 @@ using UnityEngine;
 public class SpawnWalls : MonoBehaviour
 {
     public GameObject objectToSpawn;
-    public float minSpawnIntervalMilliseconds = 2000f;
-    public float maxSpawnIntervalMilliseconds = 3500f;
+    public float minSpawnIntervalMilliseconds = 3500f;
+    public float maxSpawnIntervalMilliseconds = 5000f;
     private float timeUntilNextSpawn;
 
     void Start()
