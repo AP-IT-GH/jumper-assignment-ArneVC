@@ -6,12 +6,12 @@ Om de opdracht te starten heb ik eerst een training area gebouwd, die bestaat ui
 
 ### training area vloer
 
-![image](./README_images/Floor.png)
+<img src="./README_images/Floor.png" align="middle" width="3000"/>
 Dit is gewoon de "grond" waarop de agent zal staan en is gewoon een plane.
 
 ### danger wall spawner
 
-![image](./README_images/WallSpawner.png)
+<img src="./README_images/WallSpawner.png" align="middle" width="3000"/>
 Dit is een gameobject dat op bepaalde intervallen DangerWall prefabs spawnt in het level waar de agent zal moeten over springen. Dit gebeurt door volgend script:
 
 ```cs
@@ -52,7 +52,7 @@ public class SpawnWalls : MonoBehaviour
 
 ### back wall
 
-![image](./README_images/BackWall.png)
+<img src="./README_images/BackWall.png" align="middle" width="3000"/>
 Dit is de muur achter de agent. Als de agent succesvol over een muur is gesprongen zal dit gameobject er voor zorgen dat de agent punten krijgt. De backwall zal er ook voor zorgen dat muren waar de agent al is voer gesprongen verwijderd worden uit de game. Dit alles door volgende code op de wall prefabs (dus niet op de backwall zelf):
 
 ```cs
@@ -87,8 +87,8 @@ public class WallMovement : MonoBehaviour
 
 ### agent
 
-![image](./README_images/Agent.png)
-Dit is het belangrijkste gameobject van het project. De agent zal worden getrained om over de muren te springen die naar de agent toe bewegen.
+<img src="./README_images/Agent.png" align="middle" width="3000"/>
+Dit is het belangrijkste gameobject van het project. De agent zal worden getrained om over de muren te springen die naar de agent toe bewegen. De agent kan "zien" door zijn eigen hoogte te weten en door ray perception sensors zoals te zien is op bovenstaande afbeelding.
 
 ### gamemanager
 
