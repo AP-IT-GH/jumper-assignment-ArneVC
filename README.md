@@ -88,9 +88,119 @@ public class WallMovement : MonoBehaviour
 ### agent
 
 <img src="./README_images/Agent.png" align="middle" width="3000"/>
-Dit is het belangrijkste gameobject van het project. De agent zal worden getrained om over de muren te springen die naar de agent toe bewegen. De agent kan "zien" door zijn eigen hoogte te weten en door ray perception sensors zoals te zien is op bovenstaande afbeelding.
+Dit is het belangrijkste gameobject van het project. De agent zal worden getrained om over de muren te springen die naar de agent toe bewegen. De agent kan "zien" door zijn eigen hoogte te weten en door ray perception sensors zoals te zien is op bovenstaande afbeelding. De agent wordt een klein beetje afgestraft wanneer hij springt (om er voor te proberen zorgen dat hij niet de hele tijd springt) en een grote beloning wanneer een muur de back wall raakt en de agent er dus over gesprongen is. Dit door volgend script:
+
+```cs
+using System.Collections;
+using System.Collections.Generic;
+using Unity.MLAgents;
+using Unity.MLAgents.Sensors;
+using Unity.MLAgents.Actuators;
+using UnityEngine;
+
+public class AgentScript : Agent
+{
+Rigidbody rb;
+public float jumpForce = 100f;
+private GameManager gameManager;
+private bool isGrounded = true;
+
+    public void Start()
+    {
+        gameManager = FindObjectOfType<GameManager>();
+        rb = GetComponent<Rigidbody>();
+        rb.freezeRotation = true;
+    }
+    public override void OnEpisodeBegin()
+    {
+        this.transform.localPosition = new Vector3(0.0f, 1.5f, -43.0f);
+        this.transform.localRotation = Quaternion.identity;
+        rb.freezeRotation = true;
+        isGrounded = true;
+    }
+
+    public override void CollectObservations(VectorSensor sensor)
+    {
+        sensor.AddObservation(transform.localPosition.y);
+    }
+
+    public override void OnActionReceived(ActionBuffers actionBuffers)
+    {
+        var actions = actionBuffers.ContinuousActions;
+        if (isGrounded && actions[0] > 0)
+        {
+            AddReward(-0.01f);
+            Jump();
+        }
+    }
+
+    public override void Heuristic(in ActionBuffers actionsOut)
+    {
+        var continuousActionsOut = actionsOut.ContinuousActions;
+        continuousActionsOut.Clear();
+        if (Input.GetKey(KeyCode.Space))
+        {
+            continuousActionsOut[0] = 1;
+        }
+        else
+        {
+            continuousActionsOut[0] = 0;
+        }
+    }
+    public void WallDestroyed()
+    {
+        AddReward(1.0f);
+    }
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        rb.freezeRotation = true;
+        if(!collision.gameObject.CompareTag("Floor"))
+        {
+            gameManager.ResetWalls();
+            EndEpisode();
+        }
+        if(collision.gameObject.CompareTag("Floor"))
+        {
+            isGrounded = true;
+        }
+    }
+
+    private void Jump()
+    {
+        rb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
+        isGrounded = false;
+    }
+
+}
+
+```
 
 ### gamemanager
+
+De gamemanager is het gameobject dat de functionaliteit van de andere gameobjecten waar nodig aan elkaar verbindt (zoals in bovenstaande code te zien is), door volgend script:
+
+```cs
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public class GameManager : MonoBehaviour
+{
+    public void NotifyWallDestroyed()
+    {
+        FindObjectOfType<AgentScript>().WallDestroyed();
+    }
+    public void ResetWalls()
+    {
+        GameObject[] walls = GameObject.FindGameObjectsWithTag("DangerWall");
+        foreach (GameObject wall in walls)
+        {
+            Destroy(wall);
+        }
+    }
+}
+```
 
 ## Training
 
@@ -105,3 +215,11 @@ Deze training heeft niet zo lang geduurd (rond de 2 uur). Training 1 verliep in 
 Voor training 2 startte heb ik eerst het sprong probleem opgelost door eerst te controleren of de agent de grond geraakt had voor deze terug kon springen.
 Deze training heb ik veel langer laten duren (30 uur). Dit was niet de volledige 15000000 steps uit de config file, maar de agent was duidelijk al zeer goed in het springen over de muren. Ook in training 2 was het in het begin duidelijk dat de agent niet veel vooruitgang boekte, maar na ongeveer 1.400.000 steps begon de agent vooruitgang te boeken.
 [img]
+
+```
+
+```
+
+```
+
+```
