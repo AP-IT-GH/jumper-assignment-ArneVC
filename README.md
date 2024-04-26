@@ -217,3 +217,8 @@ Voor training 2 startte heb ik eerst het sprong probleem opgelost door eerst te 
 Deze training heb ik veel langer laten duren (ongeveer 43,5 uur en ongeveer 8.030.000). Dit was niet de volledige 15000000 steps uit de config file, maar de agent was duidelijk al zeer goed in het springen over de muren. Ook in training 2 was het in het begin duidelijk dat de agent niet veel vooruitgang boekte, maar na ongeveer 1.400.000 steps begon de agent vooruitgang te boeken. Hierna werd de agent gestaag beter. De agent werdt wanneer hij zeer ver in de training was zeker beter, maar het was wel raar om te zien hoe de agent een paar keer maar een "laag aantal punten" haalde en dan plots uitschieters had. Ik heb de training gestopt toen de agent een uitschieter van boven de 13.000 behaalde.
 <img src="./README_images/training/Jumper2_TrainingEnd.png" align="middle" width="3000"/>
 <img src="./README_images/training/Jumper2_Graph.png" align="middle" width="3000"/>
+
+## eindresultaat
+
+<video src="./README_images/results/Result.mp4" controls="controls" style="max-width: 730px;">
+</video>
