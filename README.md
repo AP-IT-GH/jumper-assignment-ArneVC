@@ -6,12 +6,12 @@ Om de opdracht te starten heb ik eerst een training area gebouwd, die bestaat ui
 
 ### training area vloer
 
-<img src="./README_images/Floor.png" align="middle" width="3000"/>
+<img src="./README_images/documentation/Floor.png" align="middle" width="3000"/>
 Dit is gewoon de "grond" waarop de agent zal staan en is gewoon een plane.
 
 ### danger wall spawner
 
-<img src="./README_images/WallSpawner.png" align="middle" width="3000"/>
+<img src="./README_images/documentation/WallSpawner.png" align="middle" width="3000"/>
 Dit is een gameobject dat op bepaalde intervallen DangerWall prefabs spawnt in het level waar de agent zal moeten over springen. Dit gebeurt door volgend script:
 
 ```cs
@@ -52,7 +52,7 @@ public class SpawnWalls : MonoBehaviour
 
 ### back wall
 
-<img src="./README_images/BackWall.png" align="middle" width="3000"/>
+<img src="./README_images/documentation/BackWall.png" align="middle" width="3000"/>
 Dit is de muur achter de agent. Als de agent succesvol over een muur is gesprongen zal dit gameobject er voor zorgen dat de agent punten krijgt. De backwall zal er ook voor zorgen dat muren waar de agent al is voer gesprongen verwijderd worden uit de game. Dit alles door volgende code op de wall prefabs (dus niet op de backwall zelf):
 
 ```cs
@@ -87,7 +87,7 @@ public class WallMovement : MonoBehaviour
 
 ### agent
 
-<img src="./README_images/Agent.png" align="middle" width="3000"/>
+<img src="./README_images/documentation/Agent.png" align="middle" width="3000"/>
 Dit is het belangrijkste gameobject van het project. De agent zal worden getrained om over de muren te springen die naar de agent toe bewegen. De agent kan "zien" door zijn eigen hoogte te weten en door ray perception sensors zoals te zien is op bovenstaande afbeelding. De agent wordt een klein beetje afgestraft wanneer hij springt (om er voor te proberen zorgen dat hij niet de hele tijd springt) en een grote beloning wanneer een muur de back wall raakt en de agent er dus over gesprongen is. Dit door volgend script:
 
 ```cs
@@ -215,11 +215,3 @@ Deze training heeft niet zo lang geduurd (rond de 2 uur). Training 1 verliep in 
 Voor training 2 startte heb ik eerst het sprong probleem opgelost door eerst te controleren of de agent de grond geraakt had voor deze terug kon springen.
 Deze training heb ik veel langer laten duren (30 uur). Dit was niet de volledige 15000000 steps uit de config file, maar de agent was duidelijk al zeer goed in het springen over de muren. Ook in training 2 was het in het begin duidelijk dat de agent niet veel vooruitgang boekte, maar na ongeveer 1.400.000 steps begon de agent vooruitgang te boeken.
 [img]
-
-```
-
-```
-
-```
-
-```
